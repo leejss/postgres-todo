@@ -1,7 +1,12 @@
+import { AddTodoDialog } from "@/app/components/AddTodoDialog";
+import { Container } from "@radix-ui/themes";
+
 const HomePage = () => {
   return (
     <div>
-      <h1 className="text-3xl text-red-500">HomePage</h1>
+      <Container>
+        <AddTodoDialog />
+      </Container>
     </div>
   );
 };
