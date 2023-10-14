@@ -1,41 +1,63 @@
 "use client";
 
-import { Button, Dialog, Flex, Text, TextField } from "@radix-ui/themes";
-export const AddTodoDialog = () => {
+import { addTodo } from "@/app/api/todos";
+import {
+  Button,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+  Flex,
+  Text,
+  TextFieldInput,
+} from "@radix-ui/themes";
+export const AddTodoDialog = async () => {
   return (
-    <Dialog.Root>
-      <Dialog.Trigger>
+    <DialogRoot>
+      <DialogTrigger>
         <Button variant="solid" color="indigo">
           Add Todo
         </Button>
-      </Dialog.Trigger>
+      </DialogTrigger>
 
-      <Dialog.Content style={{ maxWidth: 450 }}>
-        <Dialog.Title>Add Todo</Dialog.Title>
-        <Dialog.Description size="2" mb="4">
+      <DialogContent style={{ maxWidth: 450 }}>
+        <DialogTitle>Add Todo</DialogTitle>
+        <DialogDescription size="2" mb="4">
           Write your todo here.
-        </Dialog.Description>
+        </DialogDescription>
 
         <Flex direction="column" gap="3">
           <label>
             <Text as="div" size="2" mb="1" weight="bold">
               Content
             </Text>
-            <TextField.Input defaultValue="" placeholder="" />
+            <TextFieldInput defaultValue="" placeholder="" />
           </label>
         </Flex>
 
         <Flex gap="3" mt="4" justify="end">
-          <Dialog.Close>
+          <DialogClose>
             <Button variant="soft" color="gray">
               Cancel
             </Button>
-          </Dialog.Close>
-          <Dialog.Close>
-            <Button>Save</Button>
-          </Dialog.Close>
+          </DialogClose>
+          <DialogClose>
+            <Button
+              onClick={async () => {
+                const todos = await addTodo({
+                  id: "4",
+                  completed: false,
+                  content: "Study hard",
+                });
+              }}
+            >
+              Save
+            </Button>
+          </DialogClose>
         </Flex>
-      </Dialog.Content>
-    </Dialog.Root>
+      </DialogContent>
+    </DialogRoot>
   );
 };
