@@ -1,4 +1,5 @@
 import { RadixTheme } from "@/app/components/RadixTheme";
+import { ReactQueryContainer } from "@/app/components/ReactQueryContainer";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <RadixTheme>{children}</RadixTheme>
+        <ReactQueryContainer>
+          <RadixTheme>{children}</RadixTheme>
+        </ReactQueryContainer>
       </body>
     </html>
   );

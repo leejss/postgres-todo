@@ -6,18 +6,17 @@ export const getTodos = async () => {
   return todos;
 };
 
-export const addTodo = async (todo: Todo) => {
-  const todos = await api.post("todos", { json: todo }).json<Todo[]>();
-
+export const addTodo = async ({ content }: { content: string }) => {
+  const todos = await api.post("todos", { json: { content } }).json<Todo[]>();
   return todos;
 };
 
-export const toggleTodo = async (id: string) => {
-  const todo = await api.put(`/todos/${id}`).json();
+export const toggleTodo = async ({ id }: { id: string }) => {
+  const todo = await api.put(`todos/${id}`).json();
   return todo;
 };
 
-export const deleteTodo = async (id: string) => {
-  const todo = await api.delete(`/todos/${id}`).json();
+export const deleteTodo = async ({ id }: { id: string }) => {
+  const todo = await api.delete(`todos/${id}`).json();
   return todo;
 };

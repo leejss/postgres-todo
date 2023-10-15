@@ -6,6 +6,11 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  todos.push(body);
+  const newTodo = {
+    id: "-",
+    completed: false,
+    content: body.content,
+  };
+  todos.push(newTodo);
   return new Response(JSON.stringify(todos));
 }

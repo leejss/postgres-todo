@@ -1,6 +1,6 @@
 "use client";
 
-import { addTodo } from "@/app/api/todos";
+import { useAddTodoMutation } from "@/app/hooks/server/useTodos";
 import {
   Button,
   DialogClose,
@@ -13,7 +13,8 @@ import {
   Text,
   TextFieldInput,
 } from "@radix-ui/themes";
-export const AddTodoDialog = async () => {
+export const AddTodoDialog = () => {
+  const { mutate } = useAddTodoMutation();
   return (
     <DialogRoot>
       <DialogTrigger>
@@ -45,10 +46,13 @@ export const AddTodoDialog = async () => {
           </DialogClose>
           <DialogClose>
             <Button
-              onClick={async () => {
-                const todos = await addTodo({
-                  id: "4",
-                  completed: false,
+              onClick={() => {
+                // const todos = await addTodo({
+                //   id: "4",
+                //   completed: false,
+                //   content: "Study hard",
+                // });
+                mutate({
                   content: "Study hard",
                 });
               }}
