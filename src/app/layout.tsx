@@ -1,3 +1,4 @@
+import { AppLayout } from "@/app/components/AppLayout";
 import { RadixTheme } from "@/app/components/RadixTheme";
 import { ReactQueryContainer } from "@/app/components/ReactQueryContainer";
 import type { Metadata } from "next";
@@ -15,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <ReactQueryContainer>
-          <RadixTheme>{children}</RadixTheme>
+          <RadixTheme>
+            <AppLayout>{children}</AppLayout>
+          </RadixTheme>
         </ReactQueryContainer>
       </body>
     </html>

@@ -13,12 +13,22 @@ import {
   Text,
   TextFieldInput,
 } from "@radix-ui/themes";
+import { useState } from "react";
 export const AddTodoDialog = () => {
+  const [content, setContent] = useState("");
   const { mutate } = useAddTodoMutation();
   return (
     <DialogRoot>
       <DialogTrigger>
-        <Button variant="solid" color="indigo">
+        <Button
+          style={{
+            position: "fixed",
+            top: 16,
+            right: 16,
+          }}
+          variant="solid"
+          color="indigo"
+        >
           Add Todo
         </Button>
       </DialogTrigger>
@@ -29,38 +39,41 @@ export const AddTodoDialog = () => {
           Write your todo here.
         </DialogDescription>
 
-        <Flex direction="column" gap="3">
-          <label>
-            <Text as="div" size="2" mb="1" weight="bold">
-              Content
-            </Text>
-            <TextFieldInput defaultValue="" placeholder="" />
-          </label>
-        </Flex>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            mutate({
+              content,
+            });
+            setContent("");
+          }}
+        >
+          <Flex direction="column" gap="3">
+            <label>
+              <Text as="div" size="2" mb="1" weight="bold">
+                Content
+              </Text>
+              <TextFieldInput
+                placeholder=""
+                value={content}
+                onChange={(e) => {
+                  setContent(e.target.value);
+                }}
+              />
+            </label>
+          </Flex>
 
-        <Flex gap="3" mt="4" justify="end">
-          <DialogClose>
-            <Button variant="soft" color="gray">
-              Cancel
-            </Button>
-          </DialogClose>
-          <DialogClose>
-            <Button
-              onClick={() => {
-                // const todos = await addTodo({
-                //   id: "4",
-                //   completed: false,
-                //   content: "Study hard",
-                // });
-                mutate({
-                  content: "Study hard",
-                });
-              }}
-            >
-              Save
-            </Button>
-          </DialogClose>
-        </Flex>
+          <Flex gap="3" mt="4" justify="end">
+            <DialogClose>
+              <Button variant="soft" color="gray">
+                Cancel
+              </Button>
+            </DialogClose>
+            <DialogClose>
+              <Button type="submit">Save</Button>
+            </DialogClose>
+          </Flex>
+        </form>
       </DialogContent>
     </DialogRoot>
   );
