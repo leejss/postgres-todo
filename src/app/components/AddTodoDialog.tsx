@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 export const AddTodoDialog = () => {
   const [content, setContent] = useState("");
-  const { mutate } = useAddTodoMutation();
+  const { mutate: addTodo } = useAddTodoMutation();
   return (
     <DialogRoot>
       <DialogTrigger>
@@ -42,7 +42,7 @@ export const AddTodoDialog = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            mutate({
+            addTodo({
               content,
             });
             setContent("");

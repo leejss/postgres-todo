@@ -1,7 +1,7 @@
 "use client";
 
+import { Todo } from "@/app/db/schema";
 import { useDeleteTodoMutation, useTodos, useToggleTodoMutation } from "@/app/hooks/server/useTodos";
-import { Todo } from "@/app/lib/db";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { Card, Checkbox, Flex, IconButton, Text } from "@radix-ui/themes";
 

@@ -25,7 +25,7 @@ export const useAddTodoMutation = () => {
 
 export const useToggleTodoMutation = () => {
   const mutation = useMutation({
-    mutationFn: ({ id }: { id: string }) => {
+    mutationFn: ({ id }: { id: number }) => {
       return toggleTodo({ id });
     },
     onSuccess: () => {
@@ -38,7 +38,7 @@ export const useToggleTodoMutation = () => {
 
 export const useDeleteTodoMutation = () => {
   const mutation = useMutation({
-    mutationFn: ({ id }: { id: string }) => {
+    mutationFn: ({ id }: { id: number }) => {
       return deleteTodo({ id });
     },
     onSuccess: () => {
