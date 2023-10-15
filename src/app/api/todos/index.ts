@@ -1,5 +1,5 @@
+import { Todo } from "@/app/db/schema";
 import { api } from "@/app/lib/api";
-import { Todo } from "@/app/lib/db";
 
 export const getTodos = async () => {
   const todos = await api.get("todos").json<Todo[]>();

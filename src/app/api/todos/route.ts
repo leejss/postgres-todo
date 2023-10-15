@@ -1,16 +1,12 @@
-import { todos } from "@/app/lib/db";
+import { db } from "@/app/db/drizzle";
+import { todos } from "@/app/db/schema";
 
 export async function GET() {
-  return new Response(JSON.stringify(todos));
+  const result = await db.select().from(todos);
+  return new Response(JSON.stringify(result));
 }
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const newTodo = {
-    id: "4",
-    completed: false,
-    content: body.content,
-  };
-  todos.push(newTodo);
-  return new Response(JSON.stringify(todos));
+  return new Response(JSON.stringify("test"));
 }
